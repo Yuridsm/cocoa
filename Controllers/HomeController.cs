@@ -20,7 +20,7 @@ namespace cocoa.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Ok("hello World");
         }
 
         public IActionResult Privacy()
