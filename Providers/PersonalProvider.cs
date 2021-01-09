@@ -28,7 +28,7 @@ namespace cocoa.Providers
             SignUp("Yuri", "Melo", 22, "Financial Market Developer");
         }
 
-        public string GetInfo()
+        public string GetInfoProvider()
         {
             StringBuilder builder = new StringBuilder();
             builder.Append("First Name : " + _personalInfo.firstName);
