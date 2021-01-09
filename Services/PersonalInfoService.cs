@@ -4,14 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cocoa.Interfaces;
+using cocoa.Providers;
 
 namespace cocoa.Services
 {
     public class PersonalInfoService : IPersonalInfo
     {
-        public string firstName { get; set; }
+        private PersonalProvider _provider;
+        public string firstName { get;set; }
         public string lastName { get; set; }
         public int age { get; set; }
         public string description { get; set; }
+
+        public string GetInfo()
+        {
+            _provider = new PersonalProvider(this);
+            _provider.SetInfo();
+            return _provider.GetInfo();
+        }
     }
 }
