@@ -18,8 +18,7 @@ namespace cocoa.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            PersonalProvider provider = new PersonalProvider(_personalInfo);
-            return Ok(_personalInfo.age);
+            return Ok(_personalInfo.GetInfo());
         }
     }
 }
