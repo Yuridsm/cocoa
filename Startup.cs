@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using cocoa.MappingObject;
 using ServiceStack.Text;
 
 namespace cocoa
@@ -22,7 +23,6 @@ namespace cocoa
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
 
             services.AddSingleton<IRenderSingleton, RenderSingletonService>();
 
@@ -35,6 +35,10 @@ namespace cocoa
             services.AddSingleton<IDateTime, SystemDatetime>();
 
             services.AddSingleton<IPersonalInfo, PersonalInfoService>();
+
+            services.Configure<AppSettings>(Configuration);
+
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
