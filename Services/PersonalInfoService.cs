@@ -16,7 +16,7 @@ namespace cocoa.Services
         public int age { get; set; }
         public string description { get; set; }
 
-        public string GetInfo()
+        public string GetInfoService()
         {
             _provider = new PersonalProvider(this);
             _provider.SetInfo();
