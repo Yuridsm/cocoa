@@ -34,7 +34,7 @@ namespace cocoa
 
             services.AddSingleton<IDateTime, SystemDatetime>();
 
-            services.AddScoped<IPersonalInfo, PersonalInfoService>();
+            services.AddSingleton<IPersonalInfo, PersonalInfoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
