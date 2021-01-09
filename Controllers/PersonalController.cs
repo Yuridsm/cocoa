@@ -18,7 +18,7 @@ namespace cocoa.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_personalInfo.GetInfo());
+            return Ok(_personalInfo.GetInfoService());
         }
     }
 }
