@@ -6,32 +6,47 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using cocoa.Interfaces;
 
 namespace cocoa.Controllers
 {
-    public class HomeController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class HomeController : ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
+        public static int Count { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public readonly IRenderSingleton Singleton0;
+        public readonly IRenderSingleton Singleton1;
+
+        public readonly IRenderScoped Scope0;
+        public readonly IRenderScoped Scope1;
+
+        public readonly IRenderTransient Transient0;
+        public readonly IRenderTransient Transient1;
+
+        public HomeController(
+            IRenderScoped scope0,
+            IRenderScoped scope1,
+            IRenderSingleton singleton0,
+            IRenderSingleton singleton1,
+            IRenderTransient transient0,
+            IRenderTransient transient1
+        )
         {
-            _logger = logger;
+            Scope0 = scope0;
+            Scope1 = scope1;
+            Singleton0 = singleton0;
+            Singleton1 = singleton1;
+            Transient0 = transient0;
+            Transient1 = transient1;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return Ok("hello World");
+            return Ok(Scope0.GetGuidNow.ToString());
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
