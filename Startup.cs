@@ -31,6 +31,10 @@ namespace cocoa
             services.AddTransient<IRenderTransient, RenderTransientService>();
 
             services.AddSingleton<IHealth, HealthService>();
+
+            services.AddSingleton<IDateTime, SystemDatetime>();
+
+            services.AddScoped<IPersonalInfo, PersonalInfoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
