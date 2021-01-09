@@ -11,6 +11,6 @@ namespace cocoa.Interfaces
         public string lastName { get; set; }
         public int age { get; set; }
         public string description { get; set; }
-        public string GetInfo();
+        public string GetInfoService();
     }
 }
