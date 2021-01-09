@@ -20,7 +20,7 @@ namespace cocoa.Services
         {
             _provider = new PersonalProvider(this);
             _provider.SetInfo();
-            return _provider.GetInfo();
+            return _provider.GetInfoProvider();
         }
     }
 }
