@@ -15,7 +15,7 @@ namespace cocoa.Controllers
         {
             var r = HealthProvider.GetSettings();
             var serializerSettings = new JsonSerializerSettings { Formatting = Formatting.Indented };
-            return Json(r, serializerSettings);
+            return Ok(r);
         }
     }
 }
