@@ -15,7 +15,7 @@ namespace cocoa.Providers
         {
             _personalInfo = personalInfo;
         }
-        private void SignUp(string firstName, string lastName, int age, string description)
+        public void SignUp(string firstName, string lastName, int age, string description)
         {
             _personalInfo.firstName = firstName;
             _personalInfo.lastName = lastName;
@@ -23,9 +23,9 @@ namespace cocoa.Providers
             _personalInfo.description = description;
         }
 
-        private void SetInfo()
+        public void SetInfo()
         {
-            SignUp("Yuri", "Melo", 22, "Description...");
+            SignUp("Yuri", "Melo", 22, "Financial Market Developer");
         }
 
         public string GetInfo()
