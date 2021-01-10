@@ -1,50 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Data.Common;
 using cocoa.Controllers;
 using cocoa.Interfaces;
 using cocoa.MappingObject;
+using Microsoft.Extensions.Options;
 
 namespace cocoa.Providers
 {
-    public static class HealthProvider { 
-
-        public static IAppSettings _appsettings = new AppSettings();
+    public static class HealthProvider {
+        //private static AppSettings _appSettings { get; }
 
         public static IDictionary<string, object> GetSettings(this HealthController health)
         {
-            var data = new Dictionary<string, object>();
+            var properties = health._appSettings;
+            IDictionary<string, object> data = new Dictionary<string, object>();
 
-            var properties = health._appSettings.GetType().GetProperties();//.GetType().GetProperties();
-
-            foreach (var property in properties)
+            if(properties.Logging.Equals(typeof(Logging)))
             {
-                if (property.Name == "ConnectionString")
-                {
-                    data.Add(property.Name, BlurConnectionStringPassword(property.GetValue(_appsettings).ToString()));
-                    continue;
-                }
-                if (property.Name == "FixPassword")
-                {
-                    var password = property.GetValue(_appsettings).ToString();
-                    data.Add(property.Name, password.Replace(password, "********"));
-                    continue;
-                }
-
-                //data.Add(property.Name, property.GetValue(_appsettings));
             }
 
+            if (properties.ConnectionString.Connection.Contains("Password"))
+            {
+                
+                properties.ConnectionString.Connection = BlurConnectionStringPassword(properties.ConnectionString.Connection);
+
+                data.Add("ConnectionString", properties.ConnectionString);
+            }
             return data;
         }
-
-        public static string BlurConnectionStringPassword(string connStr)
+        public static string BlurConnectionStringPassword(string planText)
         {
-            var builder = new DbConnectionStringBuilder
-            {
-                ConnectionString = connStr
-            };
+            string planPassword = planText.Split(';')[1].Split('=')[1];
+            var newProperty = planText.Replace("Password=" + planPassword, "Password=********");
 
-            builder["Password"] = "********";
-            return builder.ConnectionString;
+            return newProperty;
         }
     }
 }
