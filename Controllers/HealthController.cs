@@ -17,7 +17,6 @@ namespace cocoa.Controllers
             _appSettings = settingsOpt.Value;
         }
 
-
         [HttpGet]
         public IActionResult Index()
         {
