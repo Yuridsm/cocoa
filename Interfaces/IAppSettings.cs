@@ -8,7 +8,7 @@ namespace cocoa.Interfaces
 {
     public interface IAppSettings
     {
-        public string Logging { get; }
-        public LogLevel LogLevel { get; }
+        public Logging Logging { get; }
+        public ConnectionString ConnectionString { get; set; }
     }
 }
