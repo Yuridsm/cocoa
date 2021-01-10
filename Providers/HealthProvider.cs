@@ -1,19 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Data.Common;
+using cocoa.Controllers;
 using cocoa.Interfaces;
 using cocoa.MappingObject;
 
 namespace cocoa.Providers
 {
-    public class HealthProvider { 
+    public static class HealthProvider { 
 
         public static IAppSettings _appsettings = new AppSettings();
 
-        public static IDictionary<string, object> GetSettings()
+        public static IDictionary<string, object> GetSettings(this HealthController health)
         {
             var data = new Dictionary<string, object>();
 
-            var properties = _appsettings.GetType().GetProperties();
+            var properties = health._appSettings.GetType().GetProperties();//.GetType().GetProperties();
 
             foreach (var property in properties)
             {
@@ -29,7 +30,7 @@ namespace cocoa.Providers
                     continue;
                 }
 
-                data.Add(property.Name, property.GetValue(_appsettings));
+                //data.Add(property.Name, property.GetValue(_appsettings));
             }
 
             return data;
