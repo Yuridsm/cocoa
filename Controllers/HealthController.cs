@@ -21,9 +21,8 @@ namespace cocoa.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            //var r = HealthProvider.GetSettings(this);
-            var serializerSettings = JsonSerializer.Deserialize<AppSettings>(_appSettings)
-            return Ok(_appSettings);
+            var r = HealthProvider.GetSettings(this);
+            return Ok(r);
         }
     }
 }
