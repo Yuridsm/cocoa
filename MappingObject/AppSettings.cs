@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using cocoa.Interfaces;
 using System.Configuration;
+using System.Text;
 
 namespace cocoa.MappingObject
 {
     public class AppSettings : IAppSettings
     {
-        public string Logging { get; set; }
-        public LogLevel LogLevel { get; set; }
+        public Logging Logging { get; set; }
+        public ConnectionString ConnectionString { get; set; }
     }
 }
