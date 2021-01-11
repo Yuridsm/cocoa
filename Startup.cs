@@ -29,7 +29,7 @@ namespace cocoa
 
             services.AddTransient<IRenderTransient, RenderTransientService>();
 
-            services.AddSingleton<IHealth, HealthService>();
+            //services.AddSingleton<IHealth, HealthService>();
 
             services.AddSingleton<IDateTime, SystemDatetime>();
 
