@@ -21,10 +21,8 @@ namespace cocoa.Providers
             }
 
             if (properties.ConnectionString.Connection.Contains("Password"))
-            {
-                
+            {                
                 properties.ConnectionString.Connection = BlurConnectionStringPassword(properties.ConnectionString.Connection);
-
                 data.Add("ConnectionString", properties.ConnectionString);
             }
             return data;
